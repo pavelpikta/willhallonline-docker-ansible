@@ -270,7 +270,8 @@ jobs:
         with:
           context: ./ansible-core/${{ matrix.os }}
           # NOTE: ubuntu-24.04 builds are not stable and running > 1.5h
-          platforms: ${{ contains(fromJson('["ubuntu-24.04"]'), matrix.os) && 'linux/amd64' || 'linux/amd64,linux/arm64' }}
+          # platforms: ${{ contains(fromJson('["ubuntu-24.04"]'), matrix.os) && 'linux/amd64' || 'linux/amd64,linux/arm64' }}
+          platforms: 'linux/amd64,linux/arm64'
           push: ${{ github.event_name != 'pull_request' && (github.event_name != 'schedule' || github.repository == 'willhallonline/docker-ansible') && github.repository == 'willhallonline/docker-ansible'}}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
